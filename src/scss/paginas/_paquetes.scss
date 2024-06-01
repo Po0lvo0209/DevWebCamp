@@ -12,7 +12,11 @@
             align-items: flex-start
         }
     }
-
+    
+    &__submit{
+        @include m.boton(v.$azul, v.$blanco);
+        margin-top: 3rem;
+    }
     .paquete {
         @include m.card;
 
@@ -23,6 +27,8 @@
                 order: unset;
             }
         }
+
+   
 
 
         &__lista {
