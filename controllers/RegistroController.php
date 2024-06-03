@@ -44,9 +44,8 @@ class RegistroController
             $registro = Registro::where('usuario_id', $_SESSION['id']);
 
             if (isset($registro) && $registro->paquete_id === "3") {
-               
-                    header('Location: /boleto?id=' . urlencode($registro->token));
-                
+
+                header('Location: /boleto?id=' . urlencode($registro->token));
             }
 
 
@@ -95,5 +94,43 @@ class RegistroController
             'titulo' => 'Asistencia a DevWebCamp',
             'registro' => $registro
         ]);
+    }
+
+    public static function pagar(Router $router)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            if (!is_auth()) {
+                header('Location: /login');
+            }
+
+            // Validar que POST no venga vacio
+            if (empty($_POST)) {
+                echo json_encode([]);
+                return;
+            }
+
+            // Crear el registro
+
+
+
+            // Crear registro
+
+            $datos = $_POST;
+            $datos['token'] = substr(md5(uniqid(rand(), true)), 0, 8);
+            $datos['usuario_id'] = $_SESSION['id'];
+
+
+            try {
+                $registro = new Registro($datos);
+                $resultado = $registro->guardar();
+                echo json_encode($resultado);
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    'resultado' => 'error'
+                ]);
+            }
+        }
     }
 }
