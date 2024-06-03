@@ -26,16 +26,18 @@
         #{$modificador}__heading {
             color: v.$secundario;
         }
-        .evento__informacion{
+
+        .evento__informacion {
             background-color: v.$secundario;
-            &:hover{
-                background-color: darken(v.$secundario, 10% );
+
+            &:hover {
+                background-color: darken(v.$secundario, 10%);
             }
         }
     }
 
     .swiper-button-next,
-    .swiper-button-prev{
+    .swiper-button-prev {
         color: rgba(v.$blanco, .5);
     }
 }
@@ -59,7 +61,7 @@
         }
     }
 
-    &__nombre{
+    &__nombre {
         font-size: 2rem;
         margin: 0;
         display: -webkit-box;
@@ -91,5 +93,15 @@
 
     &__autor-nombre {
         font-weight: v.$bold;
+    }
+
+    &__agregar {
+        @include m.boton(v.$blanco, v.$negro);
+        margin-top: 1rem;
+
+        &:disabled{
+            opacity: .5;
+            cursor: not-allowed;
+        }
     }
 }
